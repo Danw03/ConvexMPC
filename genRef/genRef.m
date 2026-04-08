@@ -7,6 +7,7 @@ Xref = zeros(13*p.k, 1);
 
 Xc_base = Xc;
 Xc_base([1, 2, 7, 8, 12], 1) = 0; % set roll, pitch, rollrate, pitchrate, Vz zero
+Xc_base(6, 1) = 0.6;
 
 v_target_base = p.v_des(1:2, 1);
 a_des = p.a_des;
