@@ -4,17 +4,15 @@ function visualize(X_history, R_history, f_history, params)
     H = params.body_h / 2;
     
     % =========================================================================
-    % --- 현재 날짜/시간 기반 폴더 생성 (datetime 사용) ---
+    % --- 현재 날짜/시간 기반 폴더 생성 ---
     % =========================================================================
-    % 'now' 대신 datetime('now')를 사용하고 Format을 지정합니다.
-    t = datetime('now', 'Format', 'yyyyMMdd_HHmmss');
-    timestamp = char(t); % fullfile과의 호환성을 위해 문자열로 변환
-    
+    timestamp = datestr(now, 'yyyymmdd_HHMMSS'); % 예: 20260403_155127
     save_dir = fullfile('Fig', timestamp);
     
     if ~exist(save_dir, 'dir')
         mkdir(save_dir);
     end
+    
     disp(['[' save_dir '] 폴더를 생성하고 저장을 시작합니다...']);
     
     % 애니메이션 창 설정
@@ -30,7 +28,7 @@ function visualize(X_history, R_history, f_history, params)
         params.global_time = 0;
     end
 
-    current_time = 0;
+    current_time = 0
     
     % 다리 선 시각화를 위한 고관절(Hip) 오프셋
     hip_offset = [ 0.365,  0.12, 0;
@@ -151,8 +149,6 @@ function visualize(X_history, R_history, f_history, params)
         else
             imwrite(imind, cm, gif_filename, 'gif', 'WriteMode', 'append', 'DelayTime', params.control_dt);
         end
-
-        current_time = current_time + params.control_dt;
     end
 
     % =========================================================================
