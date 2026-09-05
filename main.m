@@ -127,4 +127,4 @@ for step = 1:steps
 end
 
 finalReport(history);
-% visualize(history, params);
+visualize(history, params);
